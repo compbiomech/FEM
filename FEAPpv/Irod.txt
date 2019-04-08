@@ -1,0 +1,66 @@
+FEAP ** axially load rod (2017)
+4 3 1 2 2 2
+
+MATErial 1
+TRUSS
+ELAStic isotropic 900
+CROSs section 6
+ 
+
+COORdinates
+1 1 0.0 0.0
+4 0 10.0 0.0
+ 
+
+ELEMents
+1 0 1 1 2
+2 0 1 2 3
+3 0 1 3 4
+  
+
+BOUNdary restraints
+1 0 1 1
+ 
+FORCe
+4 0 5.0 0
+
+
+CSURface
+TANGential, 1
+LINEar
+1,  0.0, 0.0, 0.0
+2, 10.0, 0.0, 20.0
+
+
+END
+
+
+Batch
+prop,,1	     ! Proportional load 
+End
+2,2          ! Type 2: table input , np=2: number of time-value pairs
+0 0 1 1      ! t1 p1 t2 p2
+
+
+BATCh
+DT,,0.1
+  LOOP time 10
+    TIME
+    LOOP newton 30
+      TANgent,,1
+	  EPRINT 
+    NEXT newton
+  DISPlacement all
+  STREss all
+  plot,defo,1.0
+  plot,cont,1
+!  plot axis
+  plot node
+  NEXT time
+END
+
+
+INTEractive
+STOP
+
+
