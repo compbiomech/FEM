@@ -1,7 +1,7 @@
 # Computational Biomechanics Course 
 
-In this repository, there are extra materials for the Computational Biomechanics Course at TU Graz. 
+In this website, you can find extra materials for studying *Computational Biomechanics* at TU Graz. The following is a list of documents and source code currently on this website. 
 
-## Fintie Element Method 
-FEAPpv example problems
+## Finite Element Method 
+FEAPpv input file for axially loaded rod problem. 
 
