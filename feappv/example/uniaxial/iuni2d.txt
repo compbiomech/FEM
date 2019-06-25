@@ -1,0 +1,93 @@
+feap ** neo-hookean model 2D
+  0 0 0 2 2 4
+  
+PARAmeter
+  mu = 10000.0d0
+  bk = 2.16d4
+  ro = 1.0d3  
+  le = 5.0
+  hi = 5.0
+  di = 2.0
+  p = 10
+
+GLOBal
+  FINIte
+
+MATErial 1
+  SOLId
+  FINIte
+  mixed
+  ucon hook mu bk
+  DENSity ro
+  augm on
+  
+   
+block
+  cart 10 10
+    1 0 0
+    2 le 0
+    3 le hi
+    4 0 hi
+	
+   
+BOUNdary restraints
+1 0 0 1 
+
+
+EBOUNDary
+    1 0 1 0              
+    1 le 1 0 
+     
+EDISP
+    1 le di 0 
+   
+end
+
+
+BATCh
+TPLOt
+END
+displacement, ,1, le , hi
+STREss, ,      1, le , hi/2.0d0
+show
+
+
+Batch
+prop,,1	     ! Proportional load, expecting a function
+End
+2,1         ! Type 2: table input , np=1: number of time-value pairs per line 
+0,  0    ! t1 p1
+1.0, 1.0
+
+
+BATCH
+plot, defo
+dt,,0.1
+loop time 10 
+time
+  loop newton 30
+    tang,,1
+  next newton
+  augm  
+  !disp all
+  !stre all
+  plot,stre,1
+next time 
+stre, all
+   plot, wipe
+   plot, defo
+   plot, stre, 1
+   time
+END     
+                       
+ 
+
+INTERactive
+
+
+stop 
+
+
+
+
+
