@@ -5,7 +5,7 @@
 
 !....  Copyright (c) 1984-2017: Regents of the University of California
 !                               All rights reserved
-!....  Prepared by Dr. Kewei Li, TU Graz 
+!....  Prepared by Dr. Kewei Li, TU Graz, Jun 25, 2019
 !
 !-----[--.----+----.----+----.-----------------------------------------]
 !     Purpose: Neo Hookean Hyperelastic Model
@@ -57,10 +57,9 @@
 !     Compute deviatoric be
       detf = theta(1)
       detfi = 1.d0/detf
-      j23   = detfi**two3
+      j23   = detfi**two3      
       
-      
-      ! material model is 2d, but the storage is 3D 
+      ! mixed element is 2d, but the storage is 3D 
       ntm = 6 
       
       mu = ud(1) 
@@ -167,7 +166,7 @@
 
       do i = 1,3
         sig(i) = sig(i) * detfi + press
-        sig(i+3) = sig(i+3) * detfi
+        sig(i+3) = sig(i+3) * detfi   
       end do
 
 !     Compute stored energy density
