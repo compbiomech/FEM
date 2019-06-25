@@ -3,7 +3,7 @@ feap ** neo-hookean model 2D
   
 PARAmeter
   mu = 10000.0d0
-  bk = 1.0d5
+  bk = 2.0d4
   ro = 1.0d3
   le = 2.0
   hi = 4.0
