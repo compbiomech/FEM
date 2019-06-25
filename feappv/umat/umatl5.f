@@ -3,7 +3,9 @@
 
 !      * * F E A P * * A Finite Element Analysis Program
 
-!....  Copyright (c) : Dr. Kewei Li, TU Graz 
+!....  Copyright (c) 1984-2017: Regents of the University of California
+!                               All rights reserved
+!....  Prepared by Dr. Kewei Li, TU Graz 
 !
 !-----[--.----+----.----+----.-----------------------------------------]
 !     Purpose: Neo Hookean Hyperelastic Model
@@ -57,12 +59,16 @@
       detfi = 1.d0/detf
       j23   = detfi**two3
       
+      
+      ! material model is 2d, but the storage is 3D 
       ntm = 6 
       
       mu = ud(1) 
       bk = ud(2)
       
 !     Compute Left Cauchy-Green deformation tensor
+      
+      ! if (isw .eq. 4)   write(iow, *), "f(3, 1)=", f(1:3,1:3)
 
       be(1) = f(1,1)*f(1,1) + f(1,2)*f(1,2) + f(1,3)*f(1,3)
       be(2) = f(2,1)*f(2,1) + f(2,2)*f(2,2) + f(2,3)*f(2,3)
@@ -70,8 +76,7 @@
       be(4) = f(1,1)*f(2,1) + f(1,2)*f(2,2) + f(1,3)*f(2,3)
       be(5) = f(2,1)*f(3,1) + f(2,2)*f(3,2) + f(2,3)*f(3,3)
       be(6) = f(1,1)*f(3,1) + f(1,2)*f(3,2) + f(1,3)*f(3,3)
-      
-      
+ 
       do i = 1,ntm
         be(i) = be(i) * j23
       end do
